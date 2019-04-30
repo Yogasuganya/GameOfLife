@@ -2,6 +2,13 @@
   text-align: center;
 }
 
+.title {
+
+  color:  #343a40;
+  margin-bottom: 5%;
+  margin-top: 3%
+}
+
 /*.App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 40vmin;

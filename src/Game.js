@@ -1,9 +1,10 @@
 import React from 'react';
+import Button from 'react-bootstrap/Button';
 import './Game.css';
 
 const CELL_SIZE = 15;
-const WIDTH = 750;
-const HEIGHT = 600;
+const WIDTH = 601;
+const HEIGHT = 451;
 
 /* eslint-disable no-unused-vars */
 
@@ -27,7 +28,6 @@ class Game extends React.Component {
 		this.rows = HEIGHT / CELL_SIZE;
 		this.cols = WIDTH / CELL_SIZE;
 		this.board = this.makeEmptyBoard();
-		//this.handleRandom();
 	}
 
 	state = {
@@ -89,7 +89,6 @@ class Game extends React.Component {
 
 	runGame = () => {
 		if(this.makeCells().length === 0){
-			console.log(this.makeCells().length);
 			this.randomGame();
 		}
 		this.setState({ isRunning: true });
@@ -135,13 +134,14 @@ class Game extends React.Component {
 
 	calculateNeighbors(board, x, y) {
 		let neighbors = 0;
+
 		const dirs = [[-1, -1], [-1, 0], [-1, 1], [0, 1], [1, 1], [1, 0], [1, -1], [0,-1]];
 		for(let i = 0; i < dirs.length; i++) {
 			const dir = dirs[i];
 			let y1 = y + dir[0];
 			let x1 = x + dir[1];
 
-			if (x1 >= 0 && x1 < this.cols && y1 >= 0 && y1 < this.rows && board[y1][x1]) {
+			if ( x1 >= 0 && x1 < this.cols && y1 >= 0 && y1 < this.rows && board[y1][x1]) {
 				neighbors ++;
 			}
 		}
@@ -176,24 +176,34 @@ class Game extends React.Component {
 
 	render() {
 		const { cells, interval, isRunning } = this.state;
+
 		return (
 
 			<div>
+				<div className = "controls">
+					{/*Update every <input value = {this.state.interval} onChange = {this.handleIntervalChange} /> msec */}
+					<div className = "lCell">
+                    	<h5>Live cells: </h5>
+                    	<div className = "count"> {this.makeCells().length} </div>
+                    </div>
+					<div>
+						{isRunning ? <Button variant="danger" className = "button" onClick = {this.stopGame} block>Stop</Button> :
+						<Button variant="dark" className = "button" onClick = {this.runGame} block>Run</Button> }
+					</div>
+					<div>
+						<Button variant="dark" className="button" onClick={this.handleRandom} block>Random</Button>
+					</div>
+					<div>
+                    	<Button variant="dark" className="button" onClick={this.clearGame} block>Clear</Button>
+                    </div>
+				</div>
 				<div className = "board" style = { { width: WIDTH, height: HEIGHT, 
 					backgroundSize: `${CELL_SIZE}px ${CELL_SIZE}px` }} 
 				 onClick = {this.handleClick} ref = { (n) => { this.boardRef = n; }} >
 				 { cells.map (cell => ( 
 				 		< Cell x = { cell.x } y = { cell.y } key = { `${cell.x}, ${cell.y}`} /> 
 				 ))}
-				</div>
-
-				<div className = "controls">
-					Update every <input value = {this.state.interval} onChange = {this.handleIntervalChange} /> msec 
-					{isRunning ? <button className = "button" onClick = {this.stopGame}>Stop</button> :
-						<button className = "button" onClick = {this.runGame}>Run</button> }
-
-					<button className="button" onClick={this.handleRandom}>Random</button>
-                    <button className="button" onClick={this.clearGame}>Clear</button>
+				 
 				</div>
 			</div>
 		);

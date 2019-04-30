@@ -1,23 +1,36 @@
 .board {
 	position: relative;
     margin: 0 auto;
-    background-color: #000;
+    background-color: #ECF3FD;
     background-image:
-        linear-gradient(#333 1px, transparent 1px),
-        linear-gradient(90deg, #333 1px, transparent 1px);
+        linear-gradient(#ccc 1px, transparent 1px),
+        linear-gradient(90deg, #ccc 1px, transparent 1px);
 }
 
 .cell {
-	background: #ccc;
+	background: #4d626e;
 	position: absolute;
 }
 
 .controls {
     margin-top: 20px;
+    margin-left: 15px;
+    padding: 15px;
+    float: left;
+    text-align: left;
 }
 
 .button {
-    margin-left: 12px;
-    cursor: pointer;
+	margin-bottom: 15px;
 }
 
+.lCell {
+	font-size: 20px;
+	color: #343a40;
+	
+}
+
+.count {
+	margin: 5px;
+    text-align: center;
+}

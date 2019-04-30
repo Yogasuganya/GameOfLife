@@ -6,8 +6,8 @@ import Game from './Game';
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <h1> Game of Life </h1>
+      <div className = "App" >
+        <h1 className = "title"> Game of Life </h1>
         <Game />
       </div>
     );
