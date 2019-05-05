@@ -2,9 +2,9 @@ import React from 'react';
 import Button from 'react-bootstrap/Button';
 import './Game.css';
 
-const CELL_SIZE = 15;
-const WIDTH = 601;
-const HEIGHT = 451;
+const CELL_SIZE = 10;
+const WIDTH = 700;
+const HEIGHT = 500;
 
 /* eslint-disable no-unused-vars */
 
@@ -32,8 +32,9 @@ class Game extends React.Component {
 
 	state = {
 		cells: [],
+		generation: 0,
         isRunning: false,
-        interval: 100
+        interval: 300
 	}
 
 	makeEmptyBoard() {
@@ -106,7 +107,8 @@ class Game extends React.Component {
 	runIteration() {
 		
 		let newBoard = this.makeEmptyBoard();
-		
+		let newCells  = this.state.cells;
+
 		for (let y = 0; y < this.rows; y++){
 			for(let x =0 ; x < this.cols; x++) {
 				let neighbors = this.calculateNeighbors(this.board , x, y);
@@ -123,13 +125,18 @@ class Game extends React.Component {
 				}
 			}
 		}
-
+		let newGeneration = this.state.generation + 1;
 		this.board = newBoard;
-		this.setState({ cells: this.makeCells() });
-
+		this.setState({ cells: this.makeCells() , generation: newGeneration });
+		
 		this.timeoutHandler = window.setTimeout( () => {
+
 			this.runIteration();
-			}, this.state.interval);
+			if(JSON.stringify(newCells) === JSON.stringify(this.state.cells)){
+				this.stopGame();
+			}
+			
+		}, this.state.interval);
 	}
 
 	calculateNeighbors(board, x, y) {
@@ -156,7 +163,7 @@ class Game extends React.Component {
 	clearGame = () => {
 		this.stopGame();
         this.board = this.makeEmptyBoard();
-        this.setState({ cells: this.makeCells() });
+        this.setState({ cells: this.makeCells() , generation: 0 });
     }
 
     handleRandom = () => {
@@ -175,15 +182,16 @@ class Game extends React.Component {
     }
 
 	render() {
-		const { cells, interval, isRunning } = this.state;
+		const { cells, interval, isRunning, generation } = this.state;
 
 		return (
 
-			<div>
+			<div className = "boardalign">
 				<div className = "controls">
-					{/*Update every <input value = {this.state.interval} onChange = {this.handleIntervalChange} /> msec */}
 					<div className = "lCell">
-                    	<h5>Live cells: </h5>
+						<h5>Generation </h5>
+                    	<div className = "count"> {this.state.generation} </div>
+                    	<h5>Live cells </h5>
                     	<div className = "count"> {this.makeCells().length} </div>
                     </div>
 					<div>

@@ -7,7 +7,7 @@ class App extends Component {
   render() {
     return (
       <div className = "App" >
-        <h1 className = "title"> Game of Life </h1>
+        <h1 className = "title">{"Conway's Game of Life"} </h1>
         <Game />
       </div>
     );
