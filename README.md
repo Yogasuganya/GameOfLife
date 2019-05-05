@@ -1,6 +1,6 @@
 # Conway's Game Of Life
 
-Implemented ReactJs and Node.js to creatte conway's game of life.
+Implemented ReactJs and Node.js to create conway's game of life.
 
 # Demo
 
