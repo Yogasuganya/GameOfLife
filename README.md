@@ -1,25 +1,15 @@
 # Conway's Game Of Life
 
-Implemented ReactJs and Node.js to create conway's game of life.
+Implemention of conway's game of life using ReactJs and Node.js.
 
 # Demo
 
 https://yogasuganya.github.io/Demo-GameOfLife/
 
-# Setup
+# To Run
 
-Steps to run the game in local directory:
+1)$ git clone https://github.com/Yogasuganya/GameOfLife.git
 
-1)Click Clone or download.
+2) `npm start` to run the app in the development mode.
 
-2)In the Clone with HTTPs section, copy the clone URL for the repository.
-
-3)Open Git Bash and change the directory to where you want to clone the repo.
-
-4)Type git clone, and then paste the URL you copied and press Enter.
-
-5)Open command propmt and change to the project directory.
-
-6)Type `npm start` to run the app in the development mode.
-
-7)Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+3)Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
